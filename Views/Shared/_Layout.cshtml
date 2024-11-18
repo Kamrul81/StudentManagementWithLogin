@@ -26,10 +26,28 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+
+                    <!-- Check if the user is logged in -->
+                    @if (Context.Session.GetString("UserName") != null)
+                    {
+                        <span class="navbar-text">
+                            Welcome, @Context.Session.GetString("UserName")
+                        </span>
+                        <!-- Logout button -->
+                        <form asp-action="Logout" asp-controller="Account" method="post" class="form-inline ms-2">
+                            <button type="submit" class="btn btn-danger">Logout</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <!-- Login button if the user is not logged in -->
+                        <a class="btn btn-primary ms-2" href="@Url.Action("Login", "Account")">Login</a>
+                    }
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -41,6 +59,7 @@
             &copy; 2024 - withlogin - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

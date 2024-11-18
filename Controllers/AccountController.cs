@@ -64,5 +64,16 @@ namespace withlogin.Controllers
 
         }
 
+        // POST: /Account/Logout
+        [HttpPost]
+        public IActionResult Logout()
+        {
+            // Clear the session to log the user out
+            HttpContext.Session.Clear();
+
+            // Redirect the user to the login page
+            return RedirectToAction("Login");
+        }
+
     }
 }
