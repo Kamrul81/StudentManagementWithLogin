@@ -52,6 +52,7 @@ namespace withlogin.Controllers
             {
                 // Set session or cookie for authentication
                 HttpContext.Session.SetString("UserName", existingUser.UserName);
+                HttpContext.Session.SetString("Email", existingUser.Email);
                 //return RedirectToAction("Home/Index");
                 return RedirectToAction("Index", "Home");
             }

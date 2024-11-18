@@ -32,6 +32,8 @@
                     {
                         <span class="navbar-text">
                             Welcome, @Context.Session.GetString("UserName")
+                            <br>
+                            mail: @Context.Session.GetString("Email")
                         </span>
                         <!-- Logout button -->
                         <form asp-action="Logout" asp-controller="Account" method="post" class="form-inline ms-2">
