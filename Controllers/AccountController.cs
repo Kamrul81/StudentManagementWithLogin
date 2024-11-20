@@ -53,16 +53,13 @@ namespace withlogin.Controllers
                 // Set session or cookie for authentication
                 HttpContext.Session.SetString("UserName", existingUser.UserName);
                 HttpContext.Session.SetString("Email", existingUser.Email);
-                //return RedirectToAction("Home/Index");
                 return RedirectToAction("Index", "Home");
             }
-
-
-
-            ModelState.AddModelError("", "Invalid username or password");
-            return View("Index");
-
-
+            else
+            {
+                TempData["ErrorMessage"] = "Invalid username or password";
+                return RedirectToAction("Login");
+            }
         }
 
         // POST: /Account/Logout
