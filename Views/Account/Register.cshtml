@@ -1,4 +1,4 @@
-﻿@model withlogin.Models.User
+﻿@model StudentManagementWithLogin.Models.User
 
 @{
     var errorMessage = TempData["ErrorMessage"] as string;
@@ -19,7 +19,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f7f9fc;
+            background-color: #008080; /* Changed to teal background */
         }
 
         .login-card {
@@ -57,6 +57,21 @@
             text-align: center;
             margin-top: 20px;
         }
+
+            /* Set the text of 'Already have an account?' to black */
+            .footer-text small {
+                color: black; /* Set 'Already have an account?' text to black */
+            }
+
+            /* Set the link color inside the footer to black */
+            .footer-text a {
+                color: black !important; /* Set the link color to black */
+            }
+
+                /* Optional: Change color on hover */
+                .footer-text a:hover {
+                    color: #007bff; /* Optional: Add hover effect */
+                }
     </style>
 </head>
 <body>
@@ -96,7 +111,7 @@
                 </div>
 
                 <div class="footer-text">
-                    <small>Already have an account? <a href="@Url.Action("Login", "Account")">Login</a></small>
+                    <small>Already have an account? </small><a href="@Url.Action("Login", "Account")">Login</a>
                 </div>
 
             </form>

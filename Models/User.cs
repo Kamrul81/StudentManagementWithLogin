@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace withlogin.Models
+namespace StudentManagementWithLogin.Models
 {
     public class User
     {
@@ -15,6 +15,8 @@ namespace withlogin.Models
 
         [Required]
         [EmailAddress]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com)$",
+            ErrorMessage = "Email must end with @gmail.com or @yahoo.com.")]
         public string Email { get; set; }
     }
 

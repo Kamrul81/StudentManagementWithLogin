@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using withlogin.Models;
+using StudentManagementWithLogin.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

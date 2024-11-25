@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using withlogin.Models;
+using StudentManagementWithLogin.Models;
 
-namespace withlogin.Controllers
+namespace StudentManagementWithLogin.Controllers
 {
     public class AccountController : Controller
     {

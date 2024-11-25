@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace withlogin.Migrations
+namespace StudentManagementWithLogin.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class _1st : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using withlogin.Models;
+using StudentManagementWithLogin.Models;
 
-namespace withlogin.Controllers
+namespace StudentManagementWithLogin.Controllers
 {
     public class HomeController : Controller
     {
@@ -13,26 +13,27 @@ namespace withlogin.Controllers
             _logger = logger;
         }
 
+        // Private method to check if the user is logged in
+        private bool IsUserLoggedIn()
+        {
+            var userName = HttpContext.Session.GetString("UserName");
+            return !string.IsNullOrEmpty(userName);
+        }
+
         public IActionResult Index()
         {
-
-            // Check if user is logged in by looking for the session variable
-            var userName = HttpContext.Session.GetString("UserName");
-            if (string.IsNullOrEmpty(userName))
+            if (!IsUserLoggedIn())
             {
                 // If the user is not logged in, redirect them to the login page
                 return RedirectToAction("Login", "Account");
             }
-
 
             return View();
         }
 
         public IActionResult Privacy()
         {
-            // Check if user is logged in by looking for the session variable
-            var userName = HttpContext.Session.GetString("UserName");
-            if (string.IsNullOrEmpty(userName))
+            if (!IsUserLoggedIn())
             {
                 // If the user is not logged in, redirect them to the login page
                 return RedirectToAction("Login", "Account");

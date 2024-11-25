@@ -11,9 +11,14 @@
             --dark-bg-color: #006666; /* Darker Cyan for header and footer */
         }
 
-        body {
+        html, body {
+            height: 100%; /* Ensure the height of the body covers the full screen */
             margin: 0; /* Remove default margin */
-            padding: 0; /* Remove default padding */
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
             background-color: var(--bg-color) !important; /* Cyan background */
         }
 
@@ -39,12 +44,46 @@
                     color: #ffd700 !important; /* Gold color for active link */
                 }
 
+                /* Custom styling for the dropdown toggle (username) */
+                .navbar .nav-link.dropdown-toggle {
+    background-color: #006666; /* Dark cyan background */
+    color: #fff; /* White text */
+    padding: 8px 15px; /* Add some padding to make it look like a button */
+    border-radius: 25px; /* Make the button corners rounded */
+    display: flex;
+    align-items: center;
+}
+
+                /* Change the background color when hovering over the username dropdown */
+                .navbar .nav-link.dropdown-toggle:hover {
+    background-color: #005555; /* Slightly darker shade on hover */
+    color: #ffd700; /* Gold text color on hover */
+}
+
+                /* Adjust dropdown menu position */
+                .navbar .dropdown-menu {
+                left: -130px !important; /* Move the dropdown menu slightly to the left */
+                border-radius: 10px; /* Optional: Rounded corners for the dropdown */
+}
+
+                /* Customize dropdown items */
+                .navbar .dropdown-item {
+    color: #333; /* Dark text for the dropdown items */
+}
+
+                /* Change the background color of the dropdown items on hover */
+                .navbar .dropdown-item:hover {
+    background-color: #f0f0f0; /* Light background color on hover */
+    color: #006666; /* Dark cyan text color */
+}
+
         /* Footer styles */
         footer {
             background-color: var(--dark-bg-color); /* Darker cyan background */
             color: white; /* White text for better contrast */
             padding: 0px 0; /* Adjust padding for the footer */
             margin: 0; /* Remove margin */
+            margin-top: auto; /* Push footer to the bottom */
         }
 
         /* Text color for the text in the footer */
@@ -64,6 +103,7 @@
 
         /* Container adjustments */
         .container {
+            flex: 1; /* Ensure the content area takes up all available space */
             padding: 0; /* Remove padding from the container */
             margin: 0; /* Remove margin from the container */
         }
@@ -90,6 +130,12 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Student" asp-action="Create">Create New Student Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Student" asp-action="Index">Student List</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
@@ -99,19 +145,25 @@
                         @if (Context.Session.GetString("UserName") != null)
                         {
                             <ul class="navbar-nav d-flex justify-content-center align-items-center align-self-end">
-                                <li class="nav-item">
-                                    <span class="navbar-text">
-                                        Welcome, @Context.Session.GetString("UserName")
-                                        <br>
-                                        mail: @Context.Session.GetString("Email")
-                                    </span>
-                                </li>
 
-                                <!-- Logout Button -->
-                                <li class="nav-item">
-                                    <form asp-action="Logout" asp-controller="Account" method="post" class="form-inline ms-2">
-                                        <button type="submit" class="btn btn-danger">Logout</button>
-                                    </form>
+
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @Context.Session.GetString("UserName")
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="#">User: @Context.Session.GetString("UserName")</a></li>
+                                        <li><a class="dropdown-item" href="#">Mail: @Context.Session.GetString("Email")</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <form asp-action="Logout" asp-controller="Account" method="post" class="dropdown-item p-0">
+                                                <button type="submit" class="btn btn-danger w-100">Logout</button>
+                                            </form>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         }

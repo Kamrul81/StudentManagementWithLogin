@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using withlogin.Models;
+using StudentManagementWithLogin.Models;
 
 #nullable disable
 
-namespace withlogin.Migrations
+namespace StudentManagementWithLogin.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241116050306_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241124051625_1st")]
+    partial class _1st
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace withlogin.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("withlogin.Models.User", b =>
+            modelBuilder.Entity("StudentManagementWithLogin.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
